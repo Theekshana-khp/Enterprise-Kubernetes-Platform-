@@ -1,0 +1,18 @@
+apiVersion: orbit.example/v1
+kind: OrbitProject
+project:
+  name: sample-react-fastapi
+  namespace: sample-react-fastapi
+  description: React frontend and FastAPI backend.
+services:
+  - name: frontend
+    type: frontend
+    image: ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/frontend:REPLACE_TAG
+    port: 80
+    replicas: 2
+    expose: true
+  - name: backend
+    type: backend
+    image: ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/backend:REPLACE_TAG
+    port: 8000
+    replicas: 2

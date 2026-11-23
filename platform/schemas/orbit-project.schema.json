@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ORBIT project manifest",
+  "type": "object",
+  "required": ["apiVersion", "kind", "project", "services"],
+  "properties": {
+    "apiVersion": {"type": "string"},
+    "kind": {"const": "OrbitProject"},
+    "project": {
+      "type": "object",
+      "required": ["name", "namespace"],
+      "properties": {
+        "name": {"type": "string"},
+        "namespace": {"type": "string"},
+        "description": {"type": "string"}
+      },
+      "additionalProperties": false
+    },
+    "services": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["name", "type", "image", "port"],
+        "properties": {
+          "name": {"type": "string"},
+          "type": {"enum": ["frontend", "backend", "worker"]},
+          "image": {"type": "string"},
+          "port": {"type": "integer", "minimum": 1, "maximum": 65535},
+          "replicas": {"type": "integer", "minimum": 1, "default": 1},
+          "cpuRequest": {"type": "string"},
+          "memoryRequest": {"type": "string"},
+          "cpuLimit": {"type": "string"},
+          "memoryLimit": {"type": "string"},
+          "env": {"type": "object", "additionalProperties": {"type": "string"}},
+          "expose": {"type": "boolean", "default": false}
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

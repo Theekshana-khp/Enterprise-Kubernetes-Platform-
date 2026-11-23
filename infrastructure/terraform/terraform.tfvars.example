@@ -1,0 +1,7 @@
+aws_region          = "us-east-1"
+project_name        = "orbit"
+environment         = "dev"
+cluster_name        = "orbit-eks-dev"
+vpc_cidr            = "10.0.0.0/16"
+admin_cidr          = "REPLACE_WITH_YOUR_PUBLIC_IP/32"
+node_instance_types = ["t3.medium"]

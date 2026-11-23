@@ -1,0 +1,31 @@
+apiVersion: orbit.example/v1
+kind: OrbitProject
+project:
+  name: sample-learning-platform
+  namespace: sample-learning-platform
+  description: Example microservices application.
+services:
+  - name: api-gateway
+    type: backend
+    image: ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/api-gateway:REPLACE_TAG
+    port: 8080
+    replicas: 2
+    expose: true
+    env:
+      USER_SERVICE_URL: http://user-service:8081
+      COURSE_SERVICE_URL: http://course-service:8082
+  - name: user-service
+    type: backend
+    image: ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/user-service:REPLACE_TAG
+    port: 8081
+    replicas: 2
+  - name: course-service
+    type: backend
+    image: ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/course-service:REPLACE_TAG
+    port: 8082
+    replicas: 2
+  - name: ai-service
+    type: backend
+    image: ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/ai-service:REPLACE_TAG
+    port: 8000
+    replicas: 1

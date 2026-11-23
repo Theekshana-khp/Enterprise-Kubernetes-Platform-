@@ -1,0 +1,17 @@
+apiVersion: orbit.example/v1
+kind: OrbitProject
+project:
+  name: sample-monolith
+  namespace: sample-monolith
+  description: One FastAPI application containing multiple business modules.
+services:
+  - name: api
+    type: backend
+    image: ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/sample-api:REPLACE_TAG
+    port: 8000
+    replicas: 2
+    cpuRequest: 100m
+    memoryRequest: 128Mi
+    cpuLimit: 500m
+    memoryLimit: 512Mi
+    expose: true
